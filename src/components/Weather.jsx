@@ -1,37 +1,26 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function Weather( ) {
+const WeatherFetch = ({ onWeatherUpdate }) => {
+  const WEATHER_API_URL = "https://example-apis.vercel.app/api/weather";
 
-    const [weatherData, setWeatherData] = useState(null);
+  useEffect(() => {
+    async function fetchWeather() {
+      try {
+        const response = await fetch(WEATHER_API_URL);
+        const weatherData = await response.json();
+        onWeatherUpdate(weatherData);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+      }
+    }
 
-    useEffect(() => {
-      const dataWeather = async () => {
-        try {
-          const res = await fetch(`https://example-apis.vercel.app/api/weather/`);
-          const data = await res.json();
-  
-          setWeatherData(data);
-  
-          console.log(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      dataWeather();
-    }, []);
-  
+    fetchWeather();
+    const interval = setInterval(fetchWeather, 5000);
 
-  return (
-   
-<>
-{weatherData && (
-    <div>
-      <h2>Temperature: {weatherData.temperature}</h2>
-      <h2>Condition: {weatherData.condition}</h2>
-    </div>
-  )}
-</>
-  )
-}
+    return () => clearInterval(interval);
+  }, [onWeatherUpdate]);
 
-export default Weather
+  return null; // Este componente no renderiza nada visualmente
+};
+
+export default WeatherFetch;
