@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import {  useEffect } from "react";
 
 const WeatherFetch = ({ onWeatherUpdate }) => {
   const WEATHER_API_URL = "https://example-apis.vercel.app/api/weather";

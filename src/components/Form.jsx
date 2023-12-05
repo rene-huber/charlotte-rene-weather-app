@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { uid } from "uid";
 
 
@@ -36,7 +37,7 @@ import { uid } from "uid";
         <input type="checkbox" id="goodWeather" name="goodWeather" />
       </div>
 
-      <button type="submit">Add</button>
+      <button type="submit">Submit</button>
     </form>
   );
 }
