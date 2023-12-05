@@ -6,7 +6,7 @@ import List from "./components/List";
 import Header from "./components/Header";
 
 function App() {
-  const [isGoodWeather, setIsGoodWeather] = useState({});
+  const [weather, setWeather] = useState({});
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
@@ -18,7 +18,7 @@ function App() {
       );
       const weatherData = await response.json();
 
-      setIsGoodWeather(weatherData);
+      setWeather(weatherData);
     }
 
     fetchWeather();
@@ -37,15 +37,12 @@ function App() {
     setActivities(activities.filter((activity) => activity.id !== id));
   }
 
-  const goodWeatherActivities = activities.filter((activity) => {
-    return activity.isForGoodWeather === isGoodWeather;
-  });
   return (
     <main>
-      <Header  />
+      <Header conditions={weather} />
       <List
         viewList={activities}
-        isGoodWeather={isGoodWeather}
+        isGoodWeather={weather.isGoodWeather}
         DeleteActivity={handleDeleteActivity}
       ></List>
 

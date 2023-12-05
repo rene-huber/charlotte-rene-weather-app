@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function List({ viewList, isGoodWeather, DeleteActivity }) {
   return (
     <>
@@ -5,16 +6,16 @@ function List({ viewList, isGoodWeather, DeleteActivity }) {
         <h3>No activities yet! Add an activity with the form below</h3>
       ) : (
         <h3>
-          {isGoodWeather.isGoodWeather
-            ? "Good weather activities ☀️"
-            : "Bad Weather 🌧️"}
+          {isGoodWeather
+            ? "The weather is awesome! Go outside and:"
+            : "Bad weather outside! 🌧️ Here's what you can do now:"}
         </h3>
       )}
       <ul className="list-container">
         {viewList
           .filter(
             (activity) =>
-              activity.isForGoodWeather === isGoodWeather.isGoodWeather
+              activity.isForGoodWeather === isGoodWeather
           )
           .map((activity) => (
             <li key={activity.id}>
