@@ -11,11 +11,11 @@ function App() {
     defaultValue: [],
   });
 
+  const weatherApiUrl = "https://example-apis.vercel.app/api/weather";
+
   useEffect(() => {
     async function fetchWeather() {
-      const response = await fetch(
-        "https://example-apis.vercel.app/api/weather"
-      );
+      const response = await fetch(weatherApiUrl);
       const weatherData = await response.json();
 
       setWeather(weatherData);
@@ -39,18 +39,16 @@ function App() {
 
   return (
     <main>
-
-      <Header conditions={weather} />
-
-      <Header />
-
-      <Form onAddActivity={handleAddActivity}></Form>
+    <div className="main-section">
+      <Header condition={weather.condition} temperature={weather.temperature} />
 
       <List
         viewList={activities}
         isGoodWeather={weather.isGoodWeather}
         DeleteActivity={handleDeleteActivity}
       />
+      <Form onAddActivity={handleAddActivity}></Form>
+      </div>
     </main>
   );
 }

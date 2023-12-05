@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-export default function Header({ conditions }) {
+export default function Header({ condition, temperature }) {
   return (
-    <h1>
-      {conditions.condition} Temperature: {conditions.temperature}
+    <h1 className="header">
+    {condition} {temperature}°C
     </h1>
   );
 }
