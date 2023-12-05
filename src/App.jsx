@@ -42,14 +42,15 @@ function App() {
   });
   return (
     <main>
-      <Header  />
+      <Header />
+
+      <Form onAddActivity={handleAddActivity}></Form>
+
       <List
         viewList={activities}
         isGoodWeather={isGoodWeather}
         DeleteActivity={handleDeleteActivity}
-      ></List>
-
-      <Form onAddActivity={handleAddActivity}></Form>
+      />
     </main>
   );
 }
