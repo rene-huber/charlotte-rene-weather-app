@@ -1,15 +1,15 @@
 
 
-function Form ({ onAddActivity }) {
-const handleSubmit = (e) => {
-    e.preverntDefault() 
-    const form = e.target
-    const activityName = form.activityName.value
-    const goodWeather = form.goodWeather.checked
-    const activity = {activityName, goodWeather}
-    console.log(activity)
-    form.reset()   
-}
+export const Form = ({ onAddActivity }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    onAddActivity(data);
+    event.target.reset();
+    event.target.inputName.focus();
+  };
     
   return (
     <form onSubmit={handleSubmit}>
@@ -39,4 +39,3 @@ const handleSubmit = (e) => {
   )
 }
 
-export default Form
