@@ -39,14 +39,18 @@ function App() {
 
   return (
     <main>
+
       <Header conditions={weather} />
+
+      <Header />
+
+      <Form onAddActivity={handleAddActivity}></Form>
+
       <List
         viewList={activities}
         isGoodWeather={weather.isGoodWeather}
         DeleteActivity={handleDeleteActivity}
-      ></List>
-
-      <Form onAddActivity={handleAddActivity}></Form>
+      />
     </main>
   );
 }
